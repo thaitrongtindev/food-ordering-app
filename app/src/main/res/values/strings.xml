@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Food Ordering App</string>
+    <string name="waves_of_food">Waves Of Food</string>
+    <string name="deliever_favorite_food">Deliever Favorite Food</string>
+    <string name="design_by_neatroots">Design By NeatRoots</string>
+    <string name="enjoy_restaurant_quality_meals_at_home">Enjoy Restaurant Quality Meals at Home</string>
+    <string name="next">Next</string>
+</resources>
