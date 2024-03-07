@@ -31,4 +31,7 @@
     <string name="popular">Popular</string>
     <string name="view_menu">View Menu</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="proceed">Proceed</string>
+    <string name="spacy_fresh_crab">Spacy fresh crab</string>
+    <string name="_35">$35</string>
 </resources>
