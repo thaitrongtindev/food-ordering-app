@@ -35,4 +35,11 @@
     <string name="spacy_fresh_crab">Spacy fresh crab</string>
     <string name="_35">$35</string>
     <string name="what_do_you_want_to_order">What do you want to order?</string>
+    <string name="waroenk_kita">Waroenk kita</string>
+    <string name="recent_buy">Recent buy</string>
+    <string name="buy_again">Buy again</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="save_information">Save Information</string>
+    <string name="admin">Admin</string>
 </resources>
