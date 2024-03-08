@@ -47,4 +47,6 @@
     <string name="place_my_order">Place My Order</string>
     <string name="total_amount">Total Amount</string>
     <string name="go_home">Go Home</string>
+    <string name="food_name">Food Name</string>
+    <string name="short_description">Short description</string>
 </resources>
