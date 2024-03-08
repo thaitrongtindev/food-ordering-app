@@ -1,5 +1,6 @@
 package com.example.foodorderingapp.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodorderingapp.PayOutActivity
 import com.example.foodorderingapp.R
 import com.example.foodorderingapp.adapter.CartAdapter
-import com.example.foodorderingapp.databinding.CartItemBinding
 import com.example.foodorderingapp.databinding.FragmentCartBinding
 
 
@@ -48,6 +49,12 @@ class CartFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = adapterCart
         }
+
+        binding.btnProcessed.setOnClickListener() {
+            startActivity(Intent(requireContext(), PayOutActivity::class.java))
+        }
+
+
     }
 
 

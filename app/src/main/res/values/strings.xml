@@ -42,4 +42,9 @@
     <string name="phone">Phone</string>
     <string name="save_information">Save Information</string>
     <string name="admin">Admin</string>
+    <string name="notification">Notification</string>
+    <string name="edit">Edit</string>
+    <string name="place_my_order">Place My Order</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="go_home">Go Home</string>
 </resources>

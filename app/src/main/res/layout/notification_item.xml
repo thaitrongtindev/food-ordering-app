@@ -28,26 +28,18 @@
                 android:padding="10dp">
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/cardView"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:cardCornerRadius="20dp">
 
-                    <ImageView
 
-                        android:id="@+id/notifiicationImage"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@drawable/radius"
-                        android:src="@drawable/menu2"
-                        tools:layout_editor_absoluteX="-2dp"
-                        tools:layout_editor_absoluteY="6dp" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/notificationImage"-->
+<!--                        android:layout_width="55dp"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:backgroundTint="@drawable/radius"-->
+<!--                        android:src="@drawable/menu2"-->
 
-                </androidx.cardview.widget.CardView>
+<!--                        tools:ignore="MissingConstraints" />-->
+
+
 
                 <TextView
                     android:id="@+id/tvNotification"
@@ -56,10 +48,9 @@
                     android:text="@string/phone"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.146"
-                    app:layout_constraintStart_toEndOf="@+id/cardView"
-                    tools:layout_editor_absoluteY="16dp"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintHorizontal_bias="0.102"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="16dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

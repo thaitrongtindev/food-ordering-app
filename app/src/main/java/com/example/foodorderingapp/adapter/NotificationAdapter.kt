@@ -3,11 +3,10 @@ package com.example.foodorderingapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodorderingapp.R
 import com.example.foodorderingapp.databinding.NotificationItemBinding
 
-class NoticationAdapter(private val notication : List<String>, private val notifcaitonImages : List<Int>)
-    : RecyclerView.Adapter<NoticationAdapter.NotificationViewHolder>(){
+class NotificationAdapter(private val notication : ArrayList<String>, private val notifcaitonImages : ArrayList<Int>)
+    : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(){
 
         inner class NotificationViewHolder(val binding: NotificationItemBinding) : RecyclerView.ViewHolder(binding.root) {
             fun bind(position: Int) {
@@ -16,7 +15,7 @@ class NoticationAdapter(private val notication : List<String>, private val notif
 
                 binding.apply {
                     tvNotification.text = notificationName
-                    notifiicationImage.setImageResource(noticationImages)
+//                    notificationImage.setImageResource(noticationImages)
                     }
 
 
@@ -28,7 +27,9 @@ class NoticationAdapter(private val notication : List<String>, private val notif
         return NotificationViewHolder(binding)
     }
 
-    override fun getItemCount() : Int = notication.size
+    override fun getItemCount() : Int {
+        return notication.size
+    }
 
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
