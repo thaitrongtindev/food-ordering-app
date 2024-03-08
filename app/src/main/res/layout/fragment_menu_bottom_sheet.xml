@@ -6,16 +6,36 @@
 
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         tools:context=".Fragment.MenuBottomSheetFragment">
 
         <!-- TODO: Update blank fragment layout -->
+
+        <ImageButton
+            android:id="@+id/imgButtonArrBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="18dp"
+            android:src="@drawable/arrow_left"
+            android:background="@android:color/transparent"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/cart"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
-    </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menuRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
 </layout>
