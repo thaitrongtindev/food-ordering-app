@@ -1,16 +1,19 @@
 package com.example.foodorderingapp.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodorderingapp.DetailsActivity
 import com.example.foodorderingapp.R
 import com.example.foodorderingapp.databinding.PopularItemBinding
 
 class PopularAdapter(
     private val items: List<String>,
     private val price: List<String>,
-    private val image: List<Int>
+    private val image: List<Int>, private val requireContext: Context
 ) : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 
     class PopularViewHolder(private val binding: PopularItemBinding) :
@@ -38,5 +41,13 @@ class PopularAdapter(
         val image = image[position]
 
         holder.bind(item, price, image)
+
+        // set on click
+        holder.itemView.setOnClickListener() {
+            val intent = Intent(requireContext, DetailsActivity::class.java)
+            intent.putExtra("MenuItems", item)
+            intent.putExtra("MenuImage", image)
+            requireContext.startActivity(intent)
+        }
     }
 }

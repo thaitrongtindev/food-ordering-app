@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@string/cart"
+            android:text="@string/menu"
             android:textColor="@color/black"
             android:textSize="24sp" />
 

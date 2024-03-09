@@ -49,4 +49,6 @@
     <string name="go_home">Go Home</string>
     <string name="food_name">Food Name</string>
     <string name="short_description">Short description</string>
+    <string name="add_to_chart">Add To Chart</string>
+    <string name="menu">Menu</string>
 </resources>

@@ -19,7 +19,11 @@ class DetailsActivity : AppCompatActivity() {
         binding.apply {
             tvFoodName.text = foodName
             imageView.setImageResource(foodImage)
+            imageBtn.setOnClickListener {
+                finish()
+            }
         }
+
 
     }
 }
