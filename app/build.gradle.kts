@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -55,5 +56,14 @@ dependencies {
 
     //image slider
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    // auth
+    implementation("com.google.firebase:firebase-auth")
+
+    // real time database
+    implementation("com.google.firebase:firebase-database")
+
 
 }
