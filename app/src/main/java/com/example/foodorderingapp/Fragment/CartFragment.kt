@@ -12,6 +12,8 @@ import com.example.foodorderingapp.PayOutActivity
 import com.example.foodorderingapp.R
 import com.example.foodorderingapp.adapter.CartAdapter
 import com.example.foodorderingapp.databinding.FragmentCartBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 
 class CartFragment : Fragment() {
@@ -19,6 +21,14 @@ class CartFragment : Fragment() {
 
 
     private lateinit var binding: FragmentCartBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var foodName: MutableList<String>
+    private lateinit var foodPrices: MutableList<String>
+    private lateinit var foodDescription: MutableList<String>
+    private lateinit var foodImageUri: MutableList<String>
+    private lateinit var foodIngredients: MutableList<String>
+    private lateinit var quantity: MutableList<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,18 +43,7 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val cartFoodName = listOf("Burger", "Sandwich", "Mono", "Item", "Banh Mi")
 
-        val cartItemPrice = listOf("$5", "$7", "$4", "$10", "$20")
-        val cartFoodImages = listOf(
-            R.drawable.menu1,
-            R.drawable.menu2,
-            R.drawable.menu3,
-            R.drawable.menu4,
-            R.drawable.menu5
-        )
-
-        val adapterCart = CartAdapter(ArrayList(cartFoodName),ArrayList(cartItemPrice), ArrayList(cartFoodImages))
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = adapterCart

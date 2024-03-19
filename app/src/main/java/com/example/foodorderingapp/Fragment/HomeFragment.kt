@@ -13,17 +13,22 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.foodorderingapp.R
 import com.example.foodorderingapp.adapter.PopularAdapter
 import com.example.foodorderingapp.databinding.FragmentHomeBinding
+import com.example.foodorderingapp.model.MenuItem
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
-@Suppress("UNREACHABLE_CODE")
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
+    private lateinit var database: FirebaseDatabase
+    private lateinit var popularListItem: MutableList<MenuItem>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home,container, false)
+        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home, container, false)
         // Inflate the layout for this fragment
         return binding.root
 
@@ -35,7 +40,13 @@ class HomeFragment : Fragment() {
             val bottomSheet = MenuBottomSheetFragment()
             bottomSheet.show(parentFragmentManager, "Tag")
         }
-        val imageList =ArrayList<SlideModel>()
+
+        database = FirebaseDatabase.getInstance()
+
+        retrievedAndDisplayPopularItem()
+
+
+        val imageList = ArrayList<SlideModel>()
         imageList.add(SlideModel(R.drawable.banner1, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.banner2, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.banner3, ScaleTypes.FIT))
@@ -56,18 +67,39 @@ class HomeFragment : Fragment() {
 
         })
 
-        val foodName = listOf("Burger", "Sandwich", "Mono", "Item")
-        val price = listOf("$5", "$7", "$4", "$10")
-        val popularFoodImages = listOf(R.drawable.menu1,R.drawable.menu2,R.drawable.menu3,R.drawable.menu4)
 
-        val adapterPopular = PopularAdapter(foodName, price, popularFoodImages, requireContext())
+    }
+
+    private fun retrievedAndDisplayPopularItem() {
+        popularListItem = mutableListOf()
+        val foodRef = database.reference.child("menu")
+        foodRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    val popularItem = data.getValue(MenuItem::class.java)
+                    popularItem?.let { popularListItem.add(it) }
+                }
+                setAdapter()
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        )
+
+
+    }
+
+    fun setAdapter() {
+        val adapterPopular = PopularAdapter(popularListItem, requireContext())
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = adapterPopular
         }
     }
 
-    companion object {
 
-    }
 }

@@ -45,11 +45,6 @@ class SearchFragment : Fragment() {
 
 
 
-        searchAdapter = MenuAdapter(filterMenuFoodName, filterMenuFoodPrice, filterMenuFoodImage, requireContext())
-        binding.searchRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = searchAdapter
-        }
 
         binding.seaarchView.setOnQueryTextListener(object : OnQueryTextListener,
             SearchView.OnQueryTextListener {
