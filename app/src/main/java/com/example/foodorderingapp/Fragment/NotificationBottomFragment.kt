@@ -23,7 +23,12 @@ class NotificationBottomFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification_bottom, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_notification_bottom,
+            container,
+            false
+        )
         return binding.root
     }
 
@@ -42,7 +47,8 @@ class NotificationBottomFragment : BottomSheetDialogFragment() {
             R.drawable.sademoji, R.drawable.truck, R.drawable.congrats
         )
 
-        notificationAdapter = NotificationAdapter(ArrayList(notifications), ArrayList(notificationImages))
+        notificationAdapter =
+            NotificationAdapter(ArrayList(notifications), ArrayList(notificationImages))
 
         binding.notificationRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)

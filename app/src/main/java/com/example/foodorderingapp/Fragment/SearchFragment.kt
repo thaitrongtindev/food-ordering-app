@@ -36,7 +36,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentSearchBinding.inflate(layoutInflater,  container, false)
+        binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -50,12 +50,12 @@ class SearchFragment : Fragment() {
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 // Xử lý tìm kiếm khi người dùng nhấn enter hoặc nút tìm kiếm
-           //     filterMenuItems(query)
+                //     filterMenuItems(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                    // Xử lý sự kiện thay đổi văn bản trong SearchView
+                // Xử lý sự kiện thay đổi văn bản trong SearchView
                 filterMenuItems(newText)
                 return true
             }
@@ -92,8 +92,7 @@ class SearchFragment : Fragment() {
 //                filterMenuFoodImage.add(menuFoodImages[i])
 //            }
 //        }
-        menuFoodName.forEachIndexed {
-            i, foodName ->
+        menuFoodName.forEachIndexed { i, foodName ->
             if (foodName.contains(query, ignoreCase = true)) {
                 filterMenuFoodName.add(foodName)
                 filterMenuFoodPrice.add(menuItemPrice[i])

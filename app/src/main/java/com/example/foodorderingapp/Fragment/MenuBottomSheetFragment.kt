@@ -58,19 +58,18 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     private fun retrieveMenuItem() {
         database = FirebaseDatabase.getInstance()
         val foodRef: DatabaseReference = database.reference.child("menu")
-        Log.e("foodRef", foodRef.toString() )
+        Log.e("foodRef", foodRef.toString())
         menuItem = mutableListOf()
 
         foodRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
                     val menuItemRead = data.getValue(MenuItem::class.java)
-                    Log.e("menuItemRead", menuItemRead.toString() )
+                    Log.e("menuItemRead", menuItemRead.toString())
                     menuItemRead?.let { menuItem.add(it) }
                 }
                 setAdapter()
             }
-
 
 
             override fun onCancelled(error: DatabaseError) {
@@ -79,11 +78,12 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
         })
     }
+
     private fun setAdapter() {
         val adapterMenu = context?.let { MenuAdapter(menuItem, it) }
         binding.menuRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter =adapterMenu
+            adapter = adapterMenu
             adapterMenu?.notifyDataSetChanged()
         }
     }

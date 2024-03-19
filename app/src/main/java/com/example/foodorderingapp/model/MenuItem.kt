@@ -5,7 +5,8 @@ data class MenuItem(
     val foodPrice: String?,
     val foodDescription: String?,
     val foodIngredient: String?,
-    val foodImage: String?) {
+    val foodImage: String?
+) {
     constructor() : this(null, null, null, null, null)
 }
 

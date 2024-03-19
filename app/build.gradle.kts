@@ -34,10 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
-
 
 
 }
@@ -56,7 +55,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //image slider
-    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
     //firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
@@ -66,8 +65,7 @@ dependencies {
     // real time database
     implementation("com.google.firebase:firebase-database")
     //glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 
 }

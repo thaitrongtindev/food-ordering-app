@@ -28,17 +28,14 @@
                 android:padding="10dp">
 
 
+                <!--                    <ImageView-->
+                <!--                        android:id="@+id/notificationImage"-->
+                <!--                        android:layout_width="55dp"-->
+                <!--                        android:layout_height="55dp"-->
+                <!--                        android:backgroundTint="@drawable/radius"-->
+                <!--                        android:src="@drawable/menu2"-->
 
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/notificationImage"-->
-<!--                        android:layout_width="55dp"-->
-<!--                        android:layout_height="55dp"-->
-<!--                        android:backgroundTint="@drawable/radius"-->
-<!--                        android:src="@drawable/menu2"-->
-
-<!--                        tools:ignore="MissingConstraints" />-->
-
+                <!--                        tools:ignore="MissingConstraints" />-->
 
 
                 <TextView

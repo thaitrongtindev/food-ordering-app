@@ -21,6 +21,5 @@ class ChooseLocationActivity : AppCompatActivity() {
         binding.listOfLocation.setAdapter(adapter)
 
 
-
     }
 }

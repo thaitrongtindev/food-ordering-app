@@ -21,25 +21,29 @@ class CartAdapter(
     private val cartItemPrice: MutableList<String>,
     private val cartImage: MutableList<String>,
     private val cartDescription: MutableList<String>,
-    private val cartQuantity:MutableList<Int>,
+    private val cartQuantity: MutableList<Int>,
+    private val cartIngredient: MutableList<String>,
     private val context: Context
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
     private val auth = FirebaseAuth.getInstance()
+
     init {
         //initialize firebase
         val database = FirebaseDatabase.getInstance()
         val userId = auth.currentUser?.uid
         val cartItemNumber = cartQuantity.size
 
-       itemQuantities = IntArray(cartItemNumber)
+        itemQuantities = IntArray(cartItemNumber)
         cartItemReference = database.reference
             .child("user").child(userId.toString()).child("CartItems")
 
     }
+
     companion object {
-        private var itemQuantities : IntArray =  intArrayOf()
-        private lateinit var cartItemReference : DatabaseReference
+        private var itemQuantities: IntArray = intArrayOf()
+        private lateinit var cartItemReference: DatabaseReference
     }
+
     inner class CartViewHolder(val binding: CartItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
@@ -47,7 +51,7 @@ class CartAdapter(
             val cartItems = cartItems[position]
             val cartItemPrice = cartItemPrice[position]
             val imageCart = cartImage[position]
-
+            val cartIngredient = cartIngredient[position]
 
             binding.tvCartFoodName.text = cartItems
             binding.tvCartPrice.text = cartItemPrice
@@ -58,7 +62,7 @@ class CartAdapter(
             Glide.with(context).load(uri).into(binding.imageView)
 
 
-            
+
             binding.minusButton.setOnClickListener {
                 if (itemQuantities[position] > 0) {
                     itemQuantities[position]--
@@ -86,11 +90,11 @@ class CartAdapter(
     }
 
     private fun deleteItem(adapterPosition: Int) {
-       val positionRetrieve = adapterPosition
-        getUniqueKeyPosition(positionRetrieve) {
-            uniqueKey -> if (uniqueKey != null) {
+        val positionRetrieve = adapterPosition
+        getUniqueKeyPosition(positionRetrieve) { uniqueKey ->
+            if (uniqueKey != null) {
                 removeItem(positionRetrieve, uniqueKey)
-        }
+            }
         }
     }
 
@@ -102,38 +106,40 @@ class CartAdapter(
                 cartDescription.removeAt(positionRetrieve)
                 cartQuantity.removeAt(positionRetrieve)
                 cartItemPrice.removeAt(positionRetrieve)
+                cartIngredient.removeAt(positionRetrieve)
 
                 //update item quantity
-                itemQuantities = itemQuantities.filterIndexed {
-                    index , i -> index != positionRetrieve}.toIntArray()
-                    notifyItemRemoved(positionRetrieve)
+                itemQuantities =
+                    itemQuantities.filterIndexed { index, i -> index != positionRetrieve }
+                        .toIntArray()
+                notifyItemRemoved(positionRetrieve)
                 notifyItemRangeChanged(positionRetrieve, cartItems.size)
                 Toast.makeText(context, "Falied to delete", Toast.LENGTH_SHORT).show()
 
             }.addOnFailureListener {
-                    Toast.makeText(context, "Falied to delete", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Falied to delete", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun getUniqueKeyPosition(positionRetrieve: Int, onComplete:(String?) -> Unit) {
-            cartItemReference.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var uniqueKey : String ? = null
-                    snapshot.children.forEachIndexed { index, dataSnapshot ->
-                        if (index == positionRetrieve) {
-                            uniqueKey = dataSnapshot.key
-                            return@forEachIndexed
-                        }
+    private fun getUniqueKeyPosition(positionRetrieve: Int, onComplete: (String?) -> Unit) {
+        cartItemReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var uniqueKey: String? = null
+                snapshot.children.forEachIndexed { index, dataSnapshot ->
+                    if (index == positionRetrieve) {
+                        uniqueKey = dataSnapshot.key
+                        return@forEachIndexed
                     }
-                    onComplete(uniqueKey)
                 }
+                onComplete(uniqueKey)
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
 
-            })
+        })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {

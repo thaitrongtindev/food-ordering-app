@@ -29,7 +29,7 @@ class CongratsBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btn.setOnClickListener {
-           startActivity(Intent(context, MainActivity::class.java))
+            startActivity(Intent(context, MainActivity::class.java))
         }
     }
 

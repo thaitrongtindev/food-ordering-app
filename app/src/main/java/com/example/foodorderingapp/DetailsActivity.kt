@@ -20,8 +20,8 @@ class DetailsActivity : AppCompatActivity() {
     private var foodDescription: String? = null
     private var foodIngredient: String? = null
 
-    private lateinit var database : FirebaseDatabase
-    private lateinit var auh : FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var auh: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,15 +56,18 @@ class DetailsActivity : AppCompatActivity() {
         val userId = auh.currentUser?.uid
 
         //create a cartItem object
-        val cartItem = CartItems(foodName.toString(), foodPrice.toString(), foodDescription.toString(),
-            foodImage.toString(), 1)
+        val cartItem = CartItems(
+            foodName.toString(), foodPrice.toString(), foodDescription.toString(),
+            foodImage.toString(), 1, foodIngredient.toString()
+        )
 
         //save data to cart to firebase db
         database.child("user").child(userId.toString()).child("CartItems").push().setValue(cartItem)
-            .addOnCompleteListener {
-                task -> if (task.isSuccessful) {
-                    Toast.makeText(this, "Items add into cart successfully", Toast.LENGTH_SHORT).show()
-            }
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Items add into cart successfully", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }.addOnFailureListener {
                 Toast.makeText(this, "Items add into cart failed", Toast.LENGTH_SHORT).show()
 

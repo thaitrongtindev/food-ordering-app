@@ -5,6 +5,11 @@ data class CartItems(
     val foodPrice: String?,
     val foodDescription: String?,
     val foodImage: String?,
-    val foodQuantity: Int?
+    val foodQuantity: Int?,
+    val foodIngredient: String?
 
-)
+
+) {
+    constructor() : this(null, null, null, null, null, null)
+}
+

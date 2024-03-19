@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
@@ -24,29 +25,32 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var password: String
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private lateinit var googlesignInClient : GoogleSignInClient
+    private lateinit var googlesignInClient: GoogleSignInClient
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            if (task.isSuccessful) {
-                val account : GoogleSignInAccount = task.result
-                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                auth.signInWithCredential(credential).addOnCompleteListener {
-                    authTask -> if (authTask.isSuccessful) {
-                        Toast.makeText(this, "Login with Google Success", Toast.LENGTH_SHORT).show()
-                        updateUi()
-                } else {
-                    Toast.makeText(this, "Login with Google Failed", Toast.LENGTH_SHORT).show()
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                if (task.isSuccessful) {
+                    val account: GoogleSignInAccount = task.result
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    auth.signInWithCredential(credential).addOnCompleteListener { authTask ->
+                        if (authTask.isSuccessful) {
+                            Toast.makeText(this, "Login with Google Success", Toast.LENGTH_SHORT)
+                                .show()
+                            updateUi()
+                        } else {
+                            Toast.makeText(this, "Login with Google Failed", Toast.LENGTH_SHORT)
+                                .show()
 
-                }
+                        }
+                    }
                 }
             }
+
+
         }
 
-
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -76,16 +80,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     private fun onClickLoginWithEmail() {
         email = binding.editTextEmail.text.toString().trim()
         password = binding.edtPassword.text.toString().trim()
-
+        Log.e("email", email.toString())
+        Log.e("password", password.toString())
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener() {
-                task ->
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                     updateUi()
@@ -93,6 +96,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
 
                 }
+            }.addOnFailureListener {
+                Log.e("FAILED", it.toString())
+                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -48,7 +48,7 @@ class SignUpActivity : AppCompatActivity() {
                                     .LENGTH_SHORT
                             ).show()
 
-                            startActivity(Intent(this , MainActivity::class.java))
+                            startActivity(Intent(this, MainActivity::class.java))
                         } else {
                             Toast.makeText(
                                 this, "Failed sign - in with Google", Toast

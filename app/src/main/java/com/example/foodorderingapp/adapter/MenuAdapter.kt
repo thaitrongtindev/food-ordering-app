@@ -13,10 +13,11 @@ import com.example.foodorderingapp.DetailsActivity
 import com.example.foodorderingapp.databinding.MenuItemBinding
 import com.example.foodorderingapp.model.MenuItem
 
-class MenuAdapter( val menuItemList: List<MenuItem>
-    ,  val requireContext: Context
+class MenuAdapter(
+    val menuItemList: List<MenuItem>, val requireContext: Context
 ) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
-   inner class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MenuViewHolder(val binding: MenuItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener() {
                 val position = adapterPosition
@@ -27,26 +28,25 @@ class MenuAdapter( val menuItemList: List<MenuItem>
             }
         }
 
-       private fun openDetailsActivity(position: Int) {
-           val menuItem : MenuItem = menuItemList[position]
-           val intent = Intent(requireContext, DetailsActivity::class.java).apply {
-               putExtra("MenuItemName", menuItem.foodName)
-               putExtra("MenuItemImage", menuItem.foodImage)
-               putExtra("MenuItemDescription", menuItem.foodDescription)
-               putExtra("MenuItemIngredient", menuItem.foodIngredient)
-               putExtra("MenuItemPrice", menuItem.foodPrice)
-           }
-           requireContext.startActivity(intent)
-       }
+        private fun openDetailsActivity(position: Int) {
+            val menuItem: MenuItem = menuItemList[position]
+            val intent = Intent(requireContext, DetailsActivity::class.java).apply {
+                putExtra("MenuItemName", menuItem.foodName)
+                putExtra("MenuItemImage", menuItem.foodImage)
+                putExtra("MenuItemDescription", menuItem.foodDescription)
+                putExtra("MenuItemIngredient", menuItem.foodIngredient)
+                putExtra("MenuItemPrice", menuItem.foodPrice)
+            }
+            requireContext.startActivity(intent)
+        }
 
-       fun bind(position: Int) {
+        fun bind(position: Int) {
             binding.apply {
                 tvFoodNameMenu.text = menuItemList[position].foodName
                 tvPriceMenu.text = menuItemList[position].foodPrice
                 val uriString = menuItemList[position].foodImage
-                val uri:Uri = Uri.parse(uriString)
+                val uri: Uri = Uri.parse(uriString)
                 Glide.with(requireContext).load(uri).into(menuImage)
-
 
 
             }
@@ -66,10 +66,12 @@ class MenuAdapter( val menuItemList: List<MenuItem>
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         holder.bind(position)
     }
-    interface OnClickListener{
+
+    interface OnClickListener {
         fun onItemClick(position: Int) {
 
-        }}
+        }
+    }
 }
 
 

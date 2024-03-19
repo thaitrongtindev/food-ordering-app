@@ -24,15 +24,16 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_history, container, false)
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_history, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val foodName = mutableListOf<String>("Nuoc1", "Nuoc 2", "Nuoc 3", "Nuoc 4", "Nuoc 5" )
-        val price = mutableListOf<String>("$4", "$ 2", "$ 3", "$ 4", "$ 4" )
+        val foodName = mutableListOf<String>("Nuoc1", "Nuoc 2", "Nuoc 3", "Nuoc 4", "Nuoc 5")
+        val price = mutableListOf<String>("$4", "$ 2", "$ 3", "$ 4", "$ 4")
         val images = mutableListOf<Int>(
             R.drawable.menu1,
             R.drawable.menu2,
