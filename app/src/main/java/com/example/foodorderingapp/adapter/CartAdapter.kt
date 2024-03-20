@@ -66,6 +66,8 @@ class CartAdapter(
             binding.minusButton.setOnClickListener {
                 if (itemQuantities[position] > 0) {
                     itemQuantities[position]--
+                    cartQuantity[position] = itemQuantities[position]
+
                     binding.tvItemCartQuantities.text = itemQuantities[position].toString()
 
                 }
@@ -74,6 +76,7 @@ class CartAdapter(
             binding.plusButton.setOnClickListener {
                 if (itemQuantities[position] < 10) {
                     itemQuantities[position]++
+                    cartQuantity[position] = itemQuantities[position]
                     binding.tvItemCartQuantities.text = itemQuantities[position].toString()
                 }
 
